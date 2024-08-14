@@ -1,0 +1,12 @@
+[submodule "cli"]
+	path = cli
+	url = ./cli
+[submodule "contrib/react"]
+	path = contrib/react
+	url = https://github.com/dry-web-dev/react.git
+[submodule "contrib/contrib/next"]
+	path = contrib/contrib/next
+	url = https://github.com/dry-web-dev/next.git
+[submodule "contrib/next"]
+	path = contrib/next
+	url = https://github.com/dry-web-dev/next.git
