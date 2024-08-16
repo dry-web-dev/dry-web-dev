@@ -29,6 +29,9 @@ export default function SidePanel(props: Props) {
       open={props.isOpen}
       onClose={props.toggleDrawer(false)}
       onOpen={props.toggleDrawer(true)}
+      sx={{
+        zIndex: (theme) => theme.zIndex.modal + 2,
+      }}
     >
       <Box sx={props.sx} role="presentation">
         <List>
