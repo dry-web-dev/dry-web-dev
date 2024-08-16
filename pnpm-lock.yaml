@@ -51,9 +51,6 @@ importers:
       '@eslint/js':
         specifier: ^9.8.0
         version: 9.9.0
-      '@types/gsap':
-        specifier: ^3.0.0
-        version: 3.0.0
       '@types/node':
         specifier: ^22.2.0
         version: 22.3.0
@@ -674,10 +671,6 @@ packages:
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
-
-  '@types/gsap@3.0.0':
-    resolution: {integrity: sha512-BbWLi4WRHGze4C8NV7U7yRevuBFiPkPZZyGa0rryanvh/9HPUFXTNBXsGQxJZJq7Ix7j4RXMYodP3s+OsqCErg==}
-    deprecated: This is a stub types definition. gsap provides its own type definitions, so you do not need this installed.
 
   '@types/history@4.7.11':
     resolution: {integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==}
@@ -2365,10 +2358,6 @@ snapshots:
       '@types/ms': 0.7.34
 
   '@types/estree@1.0.5': {}
-
-  '@types/gsap@3.0.0':
-    dependencies:
-      gsap: 3.12.5
 
   '@types/history@4.7.11': {}
 

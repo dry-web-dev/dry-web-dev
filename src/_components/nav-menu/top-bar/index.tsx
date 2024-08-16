@@ -1,9 +1,15 @@
 import React from "react";
 import { Menu as MenuIcon } from "@mui/icons-material";
-import { Box, IconButton } from "@mui/material";
+import {
+  Box,
+  IconButton,
+} from "@mui/material";
 import { NavItem } from "@/components/nav-menu";
+import { useEffect, useState } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { NavDrop } from "./nav-drop";
-import { useBarScrollHook } from "./use-bar-hook";
+gsap.registerPlugin(ScrollTrigger);
 
 interface Props {
   defaultItems: NavItem[];
@@ -15,17 +21,31 @@ interface Props {
 }
 
 export default function TopBar(props: Props): React.ReactNode {
-  const Ref = React.useRef<HTMLDivElement>(null);
-  const isTop = useBarScrollHook(Ref.current);
+  const [isTop, setIsTop] = useState(true);
+  useEffect(() => {
+    const bodyScrollTrigger = ScrollTrigger.create({
+      trigger: document.body,
+      start: "top top",
+      end: "bottom top",
+      scrub: true,
+      onToggle: ({ isActive }) => setIsTop(isActive),
+      markers: {
+        startColor: "green",
+        endColor: "transparent",
+        fontSize: "12px",
+        indent: 20,
+      },
+    });
 
-  // Logo ################
+    return () => bodyScrollTrigger.kill();
+  }, []);
+
   const Logo = (
     <div className="flex items-center">
       <div className="text-2xl font-bold">Logo</div>
     </div>
   );
 
-  // Toggle Button ################
   const toggleButton = (
     <div className="flex md:hidden">
       <IconButton onClick={props.toggleDrawer(true)}>
@@ -34,7 +54,6 @@ export default function TopBar(props: Props): React.ReactNode {
     </div>
   );
 
-  // Nav Link ################
   const NavLink: React.FC<{ label: string; link: string }> = ({
     label,
     link,
@@ -46,14 +65,17 @@ export default function TopBar(props: Props): React.ReactNode {
     );
   };
 
-  // Nav Items ################
   const NavItems = (
     <div className="hidden md:flex gap-4 justify-center">
       {props.defaultItems.map((d, i) => (
         <NavLink key={i} label={d.label} link={d.link || "#"} />
       ))}
       {props.dropdownItems.map((d, i) => (
-        <NavDrop key={i} label={d.label} items={d.items} />
+        <NavDrop
+          key={i}
+          label={d.label}
+          items={d.items}
+        />
       ))}
       {props.authItems.map((d, i) => (
         <NavLink key={i} label={d.label} link={d.link || "#"} />
@@ -63,8 +85,9 @@ export default function TopBar(props: Props): React.ReactNode {
 
   return (
     <Box
-      ref={Ref}
-      className={`px-5 text-white h-16 flex justify-between overflow-hidden fixed w-screen ${isTop ? 'bg-transparent' : 'bg-black'}`}
+      className={`px-5 text-white h-16 flex justify-between overflow-hidden fixed w-screen ${
+        isTop ? "bg-black" : ""
+      }`}
       sx={{
         zIndex: (theme) => theme.zIndex.modal + 1,
       }}

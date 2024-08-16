@@ -3,7 +3,7 @@ import {
   TooltipProps,
   Tooltip,
   tooltipClasses,
-  MenuItem,
+  // MenuItem,
   Button,
   Fade,
   ListItemButton,
@@ -23,7 +23,7 @@ const MenuDrop = styled(({ className, ...props }: TooltipProps) => (
   [`& .${tooltipClasses.tooltip}`]: {
     backgroundColor: "#f5f5f9",
     color: "rgba(0, 0, 0, 0.87)",
-    maxWidth: "80vw",
+    maxWidth: "100vw",
     border: "1px solid #dadde9",
   },
   [`&.${tooltipClasses.popper}[data-popper-placement*="bottom"] .${tooltipClasses.tooltip}`]:
@@ -44,40 +44,40 @@ const MenuDrop = styled(({ className, ...props }: TooltipProps) => (
     },
 });
 
-const Menu = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 2;
-`;
-
 // const Menu = styled.div`
 //   display: flex;
-//   flex-direction: row;
-//   gap: 5;
-//   width: 80vw;
-//   flex-wrap: wrap;
+//   flex-direction: column;
+//   gap: 2;
 // `;
-// const defaultImg = "https://via.placeholder.com/200x150";
-// const NavLink: React.FC<{
-//   label: string;
-//   link?: string;
-//   icon: JSX.Element;
-// }> = ({ label, link, icon }) => {
-//   return (
-//     <Box
-//       onClick={() => {
-//         if (link) {
-//           window.location.href = link;
-//         }
-//       }}
-//       className="min-w-60 m-2"
-//       sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}
-//     >
-//       <img src={defaultImg} alt={label} style={{ width: '100%', height: '90%', marginBottom: '8px' }} />
-//       <Typography variant="body1">{label}</Typography>
-//     </Box>
-//   );
-// };
+
+const Menu = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5;
+  width: 100vw;
+  flex-wrap: wrap;
+`;
+const defaultImg = "https://via.placeholder.com/200x150";
+const NavLink: React.FC<{
+  label: string;
+  link?: string;
+  icon: JSX.Element;
+}> = ({ label, link, icon }) => {
+  return (
+    <Box
+      onClick={() => {
+        if (link) {
+          window.location.href = link;
+        }
+      }}
+      className="min-w-60 m-2"
+      sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}
+    >
+      <img src={defaultImg} alt={label} style={{ width: '100%', height: '90%', marginBottom: '8px' }} />
+      <Typography variant="body1">{label}</Typography>
+    </Box>
+  );
+};
 export const NavDrop: React.FC<{
   label: string;
   items?: NavItem[];
@@ -92,8 +92,8 @@ export const NavDrop: React.FC<{
           onMouseLeave={() => setIsActive(false)}
         >
           {items?.map((v, i) => (
-            <MenuItem key={i}>{v.label}</MenuItem>
-            // <NavLink {...v} key={i} />
+            // <MenuItem key={index}>{item.label}</MenuItem>
+            <NavLink {...v} key={i} />
           ))}
         </Menu>
       }
